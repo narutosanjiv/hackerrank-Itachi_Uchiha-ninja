@@ -39,9 +39,10 @@ def min_unfairness(n, k, candy)
   last_element = n - (k + 1)    
   min_unfair = sorted_candy[k-1] - sorted_candy[0]  
   
-  (1).upto(last_element).each_with_index do|elem, index| 
+  (1).upto(last_element) do|index| 
     next_element = sorted_candy[index + k - 1] 
-    if (next_element - elem) < min_unfair
+    elem = sorted_candy[index]
+    if (next_element - elem ) < min_unfair
       min_unfair = next_element - elem
     end
   end
