@@ -33,11 +33,19 @@ end
 
 def min_unfairness(n, k, candy)
   sorted_candy = QuickSort.sort!(candy)
-  if(n < k){
-      return (sorted_candy.max - sorted_candy.min)     
-  }
-        
-    
+  if n < k 
+    return (sorted_candy.max - sorted_candy.min)     
+  end 
+  last_element = n - (k + 1)    
+  min_unfair = sorted_candy[k-1] - sorted_candy[0]  
+  
+  (1).upto(last_element).each_with_index do|elem, index| 
+    next_element = sorted_candy[index + k - 1] 
+    if (next_element - elem) < min_unfair
+      min_unfair = next_element - elem
+    end
+  end
+  min_unfair
 end
 
 n = gets.to_i
